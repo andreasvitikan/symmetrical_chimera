@@ -10,6 +10,8 @@ input_sheet = ""
 # Some combination of getwd() and setwd()
 data <- read_excel(input_file, sheet = input_sheet)
 
+# You can use str(data) to describe the structure of data
+
 varstaF <- subset(x = data, subset = SEX == "F", select = c(VARSTA))
 varstaM <- subset(x = data, subset = SEX == "M", select = c(VARSTA))
 
@@ -20,6 +22,12 @@ mean(varstaM$VARSTA)
 # To get the variance use the var() function
 var(varstaF$VARSTA)
 var(varstaM$VARSTA)
+
+# Running a homoscedascity test (Levene's test) to see if the variances are homogenous
+# H0: all the variances are equal (p > .05)
+# Ha: the variances are NOT equal (p < .05)
+library("car")
+leveneTest(data$VARSTA, data$SEX)
 
 # Running an independent samples t-test (Welch's t) - does NOT assume equal variances
 t.test(varstaF$VARSTA, varstaM$VARSTA, alternative = "two.sided", var.equal = FALSE)

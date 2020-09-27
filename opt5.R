@@ -30,7 +30,8 @@ library("car")
 leveneTest(data$VARSTA, data$SEX)
 
 # Running an independent samples t-test (Welch's t) - does NOT assume equal variances
-t.test(varstaF$VARSTA, varstaM$VARSTA, alternative = "two.sided", var.equal = FALSE)
+t.test(data[which(data$SEX == "M"), "VARSTA"],
+       data[which(data$SEX == "F"), "VARSTA"], alternative = "two.sided", var.equal = FALSE)
 
 # Sample output
 #

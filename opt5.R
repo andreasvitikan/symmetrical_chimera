@@ -26,6 +26,8 @@ var(varstaM$VARSTA)
 # Running a homoscedascity test (Levene's test) to see if the variances are homogenous
 # H0: all the variances are equal (p > .05)
 # Ha: the variances are NOT equal (p < .05)
+# For N samples split into k subgroups, the df for Levene's test is
+# df = N - k
 library("car")
 leveneTest(data$VARSTA, data$SEX)
 
